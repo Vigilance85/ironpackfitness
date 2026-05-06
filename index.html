@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ultimate Rucking Guide — Lose Fat. Build Strength. No Excuses.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --olive-dark:#1E2B1F;
+  --olive-mid:#2C3E2D;
+  --olive-light:#4A5E3A;
+  --olive-pale:#D4E6D9;
+  --tan:#C8A96E;
+  --tan-light:#F5EDD8;
+  --amber:#E8A020;
+  --cream:#FAF6EE;
+  --espresso:#0D0E0D;
+  --charcoal:#1A1A1A;
+  --mid-gray:#5A5A5A;
+  --rule:#D0C8B8;
+  --white:#FFFFFF;
+  --red-alert:#C0392B;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Barlow',sans-serif;
+  background:var(--cream);
+  color:var(--charcoal);
+  font-size:16px;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif;line-height:1.1;letter-spacing:0.01em}
+
+/* ── STICKY NAV ── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:var(--olive-dark);
+  border-bottom:3px solid var(--tan);
+  padding:10px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--tan);letter-spacing:0.05em}
+.nav-cta{
+  background:var(--amber);
+  color:var(--espresso);
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:800;font-size:15px;letter-spacing:0.08em;text-transform:uppercase;
+  border:none;padding:9px 22px;cursor:pointer;
+  transition:transform 0.15s,background 0.15s;
+  text-decoration:none;display:inline-block;
+}
+.nav-cta:hover{background:#FFB830;transform:translateY(-1px)}
+.nav-price{color:var(--tan-light);font-size:13px;margin-right:14px}
+
+/* ── HERO ── */
+.hero{
+  background:var(--olive-dark);
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;
+  overflow:hidden;
+  padding:120px 24px 80px;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:repeating-linear-gradient(0deg,rgba(200,169,110,0.04) 0px,rgba(200,169,110,0.04) 1px,transparent 1px,transparent 40px),
+                   repeating-linear-gradient(90deg,rgba(200,169,110,0.04) 0px,rgba(200,169,110,0.04) 1px,transparent 1px,transparent 40px);
+}
+.hero-eyebrow{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--tan);
+  border:1px solid rgba(200,169,110,0.4);
+  padding:6px 16px;margin-bottom:28px;
+  position:relative;z-index:1;
+  animation:fadeDown 0.6s ease both;
+}
+.hero-headline{
+  font-size:clamp(52px,9vw,100px);font-weight:900;
+  text-align:center;
+  position:relative;z-index:1;
+  animation:fadeDown 0.7s 0.1s ease both;
+  max-width:900px;
+}
+.hero-headline .line1{color:var(--white);display:block}
+.hero-headline .line2{color:var(--tan);display:block}
+.hero-headline .line3{color:var(--white);display:block;font-size:0.65em;font-weight:700;margin-top:8px}
+.hero-sub{
+  color:rgba(245,237,216,0.78);
+  font-size:18px;line-height:1.6;
+  text-align:center;max-width:620px;
+  margin:24px 0 40px;
+  position:relative;z-index:1;
+  animation:fadeDown 0.7s 0.2s ease both;
+}
+.hero-cta-group{
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  position:relative;z-index:1;
+  animation:fadeDown 0.7s 0.3s ease both;
+}
+.btn-primary{
+  background:var(--amber);color:var(--espresso);
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:22px;letter-spacing:0.06em;text-transform:uppercase;
+  border:none;padding:18px 48px;cursor:pointer;
+  position:relative;overflow:hidden;
+  transition:transform 0.15s;
+  text-decoration:none;display:inline-block;
+}
+.btn-primary::after{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,0.15);
+  transform:translateX(-100%) skewX(-20deg);
+  transition:transform 0.4s;
+}
+.btn-primary:hover::after{transform:translateX(120%) skewX(-20deg)}
+.btn-primary:hover{transform:translateY(-2px)}
+.hero-subtext{color:rgba(245,237,216,0.5);font-size:13px;letter-spacing:0.04em}
+.hero-proof{
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;
+  margin-top:16px;
+}
+.proof-pill{
+  display:flex;align-items:center;gap:8px;
+  color:rgba(245,237,216,0.7);font-size:13px;
+}
+.proof-dot{width:6px;height:6px;background:var(--tan);border-radius:50%;flex-shrink:0}
+
+/* ── SECTION WRAPPERS ── */
+.section{padding:80px 24px}
+.container{max-width:900px;margin:0 auto}
+.section-label{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--tan);margin-bottom:12px;
+}
+.section-headline{
+  font-size:clamp(36px,5vw,58px);font-weight:900;
+  color:var(--olive-dark);line-height:1.05;margin-bottom:20px;
+}
+.section-headline span{color:var(--olive-light)}
+
+/* ── PAIN SECTION ── */
+.pain{background:var(--espresso)}
+.pain .section-headline{color:var(--white)}
+.pain .section-label{color:var(--tan)}
+.pain-body{color:rgba(245,237,216,0.75);font-size:17px;line-height:1.7;max-width:640px;margin-bottom:36px}
+.pain-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:740px}
+.pain-list li{
+  display:flex;align-items:flex-start;gap:12px;
+  background:rgba(255,255,255,0.04);
+  border-left:3px solid var(--tan);
+  padding:14px 16px;
+  color:rgba(245,237,216,0.8);font-size:15px;
+}
+.pain-icon{color:var(--tan);font-size:18px;flex-shrink:0;margin-top:2px}
+.pain-transition{
+  margin-top:48px;padding:28px 32px;
+  border:1px solid rgba(200,169,110,0.3);
+  border-left:4px solid var(--amber);
+  background:rgba(232,160,32,0.07);
+}
+.pain-transition p{color:var(--tan-light);font-size:18px;line-height:1.6;font-style:italic}
+.pain-transition strong{color:var(--amber);font-style:normal}
+
+/* ── WHAT IS RUCKING ── */
+.intro{background:var(--cream)}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.stat-card{
+  background:var(--white);
+  border:1px solid var(--rule);
+  border-top:4px solid var(--olive-mid);
+  padding:24px 20px;
+  text-align:center;
+}
+.stat-num{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:52px;
+  color:var(--olive-mid);line-height:1;
+}
+.stat-unit{font-size:18px;color:var(--tan);margin-left:4px}
+.stat-label{font-size:14px;color:var(--mid-gray);margin-top:6px;line-height:1.4}
+
+/* ── PRODUCT SECTION ── */
+.product{background:var(--olive-dark)}
+.product .section-label{color:var(--tan)}
+.product .section-headline{color:var(--white)}
+.product-sub{color:rgba(245,237,216,0.7);font-size:17px;margin-bottom:48px;max-width:580px}
+
+.product-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(200,169,110,0.25);
+  border-top:4px solid var(--tan);
+  padding:36px;
+  margin-bottom:24px;
+}
+.product-tag{
+  display:inline-block;
+  background:var(--tan);color:var(--espresso);
+  font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;
+  letter-spacing:0.12em;text-transform:uppercase;
+  padding:4px 12px;margin-bottom:16px;
+}
+.product-name{
+  font-size:clamp(24px,4vw,36px);font-weight:800;
+  color:var(--white);margin-bottom:12px;
+}
+.product-desc{color:rgba(245,237,216,0.7);font-size:15px;line-height:1.6;margin-bottom:24px}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.feature-item{
+  display:flex;align-items:flex-start;gap:10px;
+  color:rgba(245,237,216,0.8);font-size:14px;line-height:1.4;
+}
+.feature-check{color:var(--tan);font-weight:700;font-size:16px;flex-shrink:0;margin-top:1px}
+
+/* ── CHECKOUT ── */
+.checkout-section{background:var(--tan-light);padding:80px 24px}
+.checkout-box{
+  max-width:680px;margin:0 auto;
+  background:var(--white);
+  border:1px solid var(--rule);
+  box-shadow:0 12px 48px rgba(28,40,28,0.10);
+  overflow:hidden;
+}
+.checkout-header{
+  background:var(--olive-mid);
+  padding:24px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.checkout-header-title{
+  font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;
+  color:var(--white);
+}
+.checkout-header-step{
+  font-size:13px;color:rgba(245,237,216,0.6);
+  font-family:'Barlow Condensed',sans-serif;letter-spacing:0.1em;
+}
+.checkout-body{padding:32px}
+.order-line{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 0;
+  border-bottom:1px solid var(--rule);
+}
+.order-line:last-of-type{border-bottom:none}
+.order-item-name{font-weight:600;font-size:15px;color:var(--charcoal)}
+.order-item-desc{font-size:13px;color:var(--mid-gray);margin-top:2px}
+.order-price{
+  font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;
+  color:var(--olive-mid);
+}
+
+/* ORDER BUMP */
+.order-bump{
+  margin:24px 0;
+  border:2px dashed var(--amber);
+  background:rgba(232,160,32,0.05);
+  padding:20px 22px;
+  position:relative;
+}
+.bump-badge{
+  position:absolute;top:-12px;left:20px;
+  background:var(--amber);color:var(--espresso);
+  font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;
+  letter-spacing:0.12em;text-transform:uppercase;
+  padding:4px 12px;
+}
+.bump-checkbox-row{display:flex;align-items:flex-start;gap:14px;margin-top:8px}
+.bump-checkbox{
+  width:22px;height:22px;
+  border:2px solid var(--olive-mid);
+  cursor:pointer;flex-shrink:0;margin-top:2px;
+  accent-color:var(--olive-mid);
+}
+.bump-label{font-size:14px;color:var(--charcoal);line-height:1.5}
+.bump-label strong{color:var(--olive-mid)}
+.bump-label .bump-price{
+  font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;
+  color:var(--amber);
+}
+
+.total-row{
+  background:var(--olive-dark);
+  margin:0 -32px -32px;
+  padding:20px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.total-label{color:var(--tan-light);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.1em;text-transform:uppercase}
+.total-price{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:36px;
+  color:var(--white);
+}
+.total-sub{font-size:11px;color:rgba(245,237,216,0.5);margin-top:2px}
+
+.checkout-cta{width:100%;margin-top:24px}
+.btn-checkout{
+  width:100%;
+  background:var(--amber);color:var(--espresso);
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:24px;letter-spacing:0.06em;text-transform:uppercase;
+  border:none;padding:20px;cursor:pointer;
+  position:relative;overflow:hidden;
+  transition:transform 0.15s,background 0.15s;
+}
+.btn-checkout:hover{background:#FFB830;transform:translateY(-2px)}
+.checkout-trust{
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  margin-top:16px;flex-wrap:wrap;
+}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mid-gray)}
+.trust-icon{font-size:14px;color:var(--olive-light)}
+
+/* ── TESTIMONIALS ── */
+.testimonials{background:var(--cream)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.testi-card{
+  background:var(--white);
+  border:1px solid var(--rule);
+  border-top:3px solid var(--olive-light);
+  padding:24px;
+}
+.testi-stars{color:var(--amber);font-size:16px;margin-bottom:12px;letter-spacing:2px}
+.testi-text{font-size:14px;color:var(--charcoal);line-height:1.6;font-style:italic;margin-bottom:16px}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-avatar{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--olive-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;
+  color:var(--tan);flex-shrink:0;
+}
+.testi-name{font-weight:600;font-size:14px;color:var(--charcoal)}
+.testi-meta{font-size:12px;color:var(--mid-gray)}
+
+/* ── WHO THIS IS FOR ── */
+.for-section{background:var(--espresso)}
+.for-section .section-headline{color:var(--white)}
+.for-section .section-label{color:var(--tan)}
+.for-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px}
+.for-card{
+  padding:20px 22px;
+  border-left:3px solid;
+}
+.for-card.yes{border-color:var(--tan);background:rgba(200,169,110,0.07)}
+.for-card.no{border-color:#555;background:rgba(255,255,255,0.03)}
+.for-card-label{
+  font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:12px;
+  letter-spacing:0.15em;text-transform:uppercase;
+  margin-bottom:12px;
+}
+.for-card.yes .for-card-label{color:var(--tan)}
+.for-card.no .for-card-label{color:#888}
+.for-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;font-size:14px;line-height:1.4}
+.for-card.yes .for-item{color:rgba(245,237,216,0.8)}
+.for-card.no .for-item{color:rgba(245,237,216,0.45)}
+
+/* ── FAQ ── */
+.faq{background:var(--cream)}
+.faq-list{margin-top:40px;max-width:720px}
+.faq-item{
+  border-bottom:1px solid var(--rule);
+  padding:20px 0;
+}
+.faq-q{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;
+  color:var(--olive-dark);cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  user-select:none;
+}
+.faq-toggle{
+  font-size:22px;color:var(--tan);flex-shrink:0;
+  transition:transform 0.25s;
+  font-weight:400;
+}
+.faq-a{
+  font-size:15px;color:var(--mid-gray);line-height:1.65;
+  max-height:0;overflow:hidden;
+  transition:max-height 0.3s ease, padding 0.3s;
+}
+.faq-item.open .faq-a{max-height:300px;padding-top:12px}
+.faq-item.open .faq-toggle{transform:rotate(45deg)}
+
+/* ── FINAL CTA ── */
+.final-cta{
+  background:var(--olive-mid);
+  padding:100px 24px;
+  text-align:center;
+}
+.final-cta .section-label{color:var(--tan)}
+.final-cta-headline{
+  font-size:clamp(42px,7vw,80px);font-weight:900;
+  color:var(--white);margin-bottom:20px;
+}
+.final-cta-sub{color:rgba(245,237,216,0.7);font-size:18px;max-width:520px;margin:0 auto 40px}
+.final-divider{
+  width:80px;height:3px;background:var(--tan);
+  margin:24px auto;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--espresso);
+  padding:32px 24px;
+  text-align:center;
+  color:rgba(245,237,216,0.35);
+  font-size:12px;line-height:1.8;
+}
+footer a{color:rgba(245,237,216,0.45);text-decoration:none}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeDown{
+  from{opacity:0;transform:translateY(-20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(232,160,32,0.4)}
+  50%{box-shadow:0 0 0 12px rgba(232,160,32,0)}
+}
+.pulse{animation:pulse 2.5s ease infinite}
+
+/* ── RESPONSIVE ── */
+@media(max-width:680px){
+  .pain-list{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .feature-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .for-grid{grid-template-columns:1fr}
+  .checkout-body{padding:24px}
+  .total-row{margin:0 -24px -24px;padding:20px 24px}
+  .hero-proof{flex-direction:column;gap:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- ── STICKY NAV ── -->
+<nav class="nav">
+  <div class="nav-logo">THE RUCKING GUIDE</div>
+  <div style="display:flex;align-items:center">
+    <span class="nav-price">Get the Guide — $27</span>
+    <a href="#checkout" class="nav-cta">Get Instant Access</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-eyebrow">The Complete Rucking System for Fat Loss</div>
+  <h1 class="hero-headline">
+    <span class="line1">Stop Grinding.</span>
+    <span class="line2">Start Rucking.</span>
+    <span class="line3">The Loaded Walk That Burns Fat Like Running — Without Wrecking Your Joints</span>
+  </h1>
+  <p class="hero-sub">The complete field manual for transitioning from simple walking to weighted carries — skyrocketing caloric burn and building real functional strength, written by a veteran rucker with zero fluff and zero filler.</p>
+  <div class="hero-cta-group">
+    <a href="#checkout" class="btn-primary pulse">Get The Guide — $27 &rarr;</a>
+    <span class="hero-subtext">Instant PDF download &nbsp;·&nbsp; No subscriptions &nbsp;·&nbsp; Yours forever</span>
+    <div class="hero-proof">
+      <div class="proof-pill"><div class="proof-dot"></div>43 structured training sessions</div>
+      <div class="proof-pill"><div class="proof-dot"></div>12-week progressive program</div>
+      <div class="proof-pill"><div class="proof-dot"></div>Written by a veteran rucker</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PAIN SECTION ── -->
+<section class="pain section">
+  <div class="container">
+    <div class="section-label">Sound familiar?</div>
+    <h2 class="section-headline" style="color:var(--white)">You've Tried <span style="color:var(--tan)">Everything.</span><br>Your Body Has Other Plans.</h2>
+    <p class="pain-body">You're not lazy. You're not undisciplined. You just haven't found the right tool for your body. Most fat-loss programs were designed for 25-year-olds with fresh joints and unlimited time. Here's what's actually been happening:</p>
+    <ul class="pain-list">
+      <li><span class="pain-icon">✕</span> Running destroys your knees before you even build a base</li>
+      <li><span class="pain-icon">✕</span> The gym feels overwhelming and the results don't match the effort</li>
+      <li><span class="pain-icon">✕</span> "Just walk more" isn't challenging enough to move the needle</li>
+      <li><span class="pain-icon">✕</span> High-intensity classes spike cortisol and you're exhausted for days</li>
+      <li><span class="pain-icon">✕</span> Diet alone burns muscle with the fat — you get smaller, not leaner</li>
+      <li><span class="pain-icon">✕</span> You start strong, hit an injury, fall off, and restart from zero</li>
+    </ul>
+    <div class="pain-transition">
+      <p>Rucking doesn't care about any of that. It's a loaded backpack and an open road. It burns <strong>30–50% more calories than walking</strong>, builds genuine functional strength, and has an injury rate that makes running look reckless. The military has built elite bodies with it for thousands of years. <strong>Now it's your turn.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHAT IS RUCKING ── -->
+<section class="intro section">
+  <div class="container">
+    <div class="section-label">The science is clear</div>
+    <h2 class="section-headline">A 35-Pound Pack Transforms a Walk Into a <span>Fat-Burning Machine</span></h2>
+    <p style="color:var(--mid-gray);font-size:17px;max-width:620px;margin-bottom:8px">Rucking sits in a rare performance window: it's low-impact enough to do 3–4 times per week indefinitely, and intense enough to burn calories at near-jogging rates. Here's what the data actually shows:</p>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-num">580<span class="stat-unit">kcal</span></div>
+        <div class="stat-label">Calories burned per hour at moderate ruck intensity (220 lb individual, 35 lb pack)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1.25<span class="stat-unit">x</span></div>
+        <div class="stat-label">Ground impact force vs. running's 3.5x body weight — your joints feel the difference</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">Zone<span class="stat-unit" style="font-size:14px">2–3</span></div>
+        <div class="stat-label">Heart rate zone — the optimal fat-oxidation range with minimal cortisol response</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCT SHOWCASE ── -->
+<section class="product section">
+  <div class="container">
+    <div class="section-label">What you're getting</div>
+    <h2 class="section-headline" style="color:var(--white)">The Complete <span style="color:var(--tan)">Rucking System</span></h2>
+    <p class="product-sub">Three expert-written documents that form a complete end-to-end system — from your first unloaded walk to carrying 30+ lbs across real distance.</p>
+
+    <div class="product-card">
+      <div class="product-tag">Main Guide — Included at $27</div>
+      <div class="product-name">The Ultimate Rucking Guide for Fat Loss</div>
+      <p class="product-desc">A 20+ page field manual covering the complete science, gear selection, progressive 12-week program, nutrition principles, recovery protocols, and advanced techniques. Written by a veteran rucker who has logged thousands of miles under load.</p>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="feature-check">✓</span> 10 expert chapters — zero filler</div>
+        <div class="feature-item"><span class="feature-check">✓</span> MET comparison tables vs. running & cycling</div>
+        <div class="feature-item"><span class="feature-check">✓</span> 4-phase progression framework</div>
+        <div class="feature-item"><span class="feature-check">✓</span> Full 12-week training schedule</div>
+        <div class="feature-item"><span class="feature-check">✓</span> Gear selection guide — all budget levels</div>
+        <div class="feature-item"><span class="feature-check">✓</span> Recovery, mobility & injury prevention</div>
+        <div class="feature-item"><span class="feature-check">✓</span> Advanced rucking techniques</div>
+        <div class="feature-item"><span class="feature-check">✓</span> FAQ & troubleshooting for common issues</div>
+      </div>
+    </div>
+
+    <div class="product-card" style="border-top-color:var(--amber);opacity:0.6">
+      <div class="product-tag" style="background:var(--amber)">Order Bump — Add for Just $27 More</div>
+      <div class="product-name">The Complete Bundle Add-On</div>
+      <p class="product-desc">The Rucker's Meal Plan for Fat Loss + the 12-Week Ruck Training Log. Available as a one-click add-on at checkout — you'll never see this offer at this price anywhere else.</p>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="feature-check" style="color:var(--amber)">✓</span> 28-day rotating ruck day & rest day meals</div>
+        <div class="feature-item"><span class="feature-check" style="color:var(--amber)">✓</span> Macro targets by body weight table</div>
+        <div class="feature-item"><span class="feature-check" style="color:var(--amber)">✓</span> 43 pre-populated session log pages</div>
+        <div class="feature-item"><span class="feature-check" style="color:var(--amber)">✓</span> Weekly check-in & body comp tracker</div>
+        <div class="feature-item"><span class="feature-check" style="color:var(--amber)">✓</span> Heart rate zone reference by age</div>
+        <div class="feature-item"><span class="feature-check" style="color:var(--amber)">✓</span> Supplement stack — evidence-based only</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials section">
+  <div class="container">
+    <div class="section-label">Real ruckers. Real results.</div>
+    <h2 class="section-headline">They Strapped On a Pack.<br><span>Everything Changed.</span></h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I've had two knee surgeries. Running has been off the table for years. This guide gave me back a training life I thought I'd lost. Down 22 lbs in 14 weeks and my knees have never felt better."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">MK</div>
+          <div>
+            <div class="testi-name">Mike K.</div>
+            <div class="testi-meta">Age 51 &nbsp;·&nbsp; Lost 22 lbs</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The meal plan is worth five times the price alone. I stopped obsessing over macros and just followed the framework. The ruck day vs. rest day split clicked immediately. I finally understand how to eat."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SR</div>
+          <div>
+            <div class="testi-name">Sarah R.</div>
+            <div class="testi-meta">Age 38 &nbsp;·&nbsp; Lost 17 lbs</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Completed my first GORUCK Light at week 14 of this program. I went in carrying 20 lbs and the event felt manageable. The progressive loading system in the training log is exactly how I would have wanted it designed."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">DJ</div>
+          <div>
+            <div class="testi-name">Dan J.</div>
+            <div class="testi-meta">Age 44 &nbsp;·&nbsp; Completed GORUCK Light</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHECKOUT ── -->
+<section class="checkout-section" id="checkout">
+  <div style="text-align:center;margin-bottom:36px">
+    <div class="section-label" style="display:inline-block">Secure Checkout</div>
+    <h2 class="section-headline">One Decision.<br><span>A Completely Different Body.</span></h2>
+  </div>
+  <div class="checkout-box">
+    <div class="checkout-header">
+      <div class="checkout-header-title">Your Order Summary</div>
+      <div class="checkout-header-step">Step 1 of 2 — Review &amp; Add</div>
+    </div>
+    <div class="checkout-body">
+      <div class="order-line">
+        <div>
+          <div class="order-item-name">The Ultimate Rucking Guide for Fat Loss</div>
+          <div class="order-item-desc">Instant PDF download &nbsp;·&nbsp; 20+ pages &nbsp;·&nbsp; 12-week program</div>
+        </div>
+        <div class="order-price">$27</div>
+      </div>
+
+      <!-- ORDER BUMP -->
+      <div class="order-bump">
+        <div class="bump-badge">⚡ One-Time Add-On Offer</div>
+        <div class="bump-checkbox-row" style="margin-top:20px">
+          <input type="checkbox" class="bump-checkbox" id="bump" onchange="updateTotal(this)">
+          <label for="bump" class="bump-label">
+            <strong>YES — Add The Rucker's Meal Plan + 12-Week Training Log</strong> for just <span class="bump-price">$27 more</span>.<br>
+            Get the complete 28-day rotating nutrition protocol, ruck day vs. rest day meal breakdowns, and 43 pre-populated session log pages — all designed to run alongside the guide. Normally sold separately, this one-click add-on is only available right here, right now. <strong>You will not see this offer again.</strong>
+          </label>
+        </div>
+      </div>
+
+      <div class="total-row" id="total-row">
+        <div>
+          <div class="total-label">Order Total</div>
+          <div class="total-sub" id="total-sub">The Ultimate Rucking Guide</div>
+        </div>
+        <div class="total-price" id="total-price">$27</div>
+      </div>
+    </div>
+    <div style="padding:24px 32px 32px">
+      <button class="btn-checkout" onclick="handleCheckout()">Complete My Order &rarr;</button>
+      <div class="checkout-trust">
+        <div class="trust-item"><span class="trust-icon">🔒</span> 256-bit SSL Secured</div>
+        <div class="trust-item"><span class="trust-icon">⚡</span> Instant PDF Delivery</div>
+        <div class="trust-item"><span class="trust-icon">✓</span> No Subscription Ever</div>
+        <div class="trust-item"><span class="trust-icon">📄</span> All Sales Final</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHO THIS IS FOR ── -->
+<section class="for-section section">
+  <div class="container">
+    <div class="section-label">Is this for you?</div>
+    <h2 class="section-headline" style="color:var(--white)">This Was Written <span style="color:var(--tan)">For You</span> If...</h2>
+    <div class="for-grid">
+      <div class="for-card yes">
+        <div class="for-card-label">This IS for you</div>
+        <div class="for-item"><span style="color:var(--tan);font-size:14px">✓</span> You have 30–60 lbs to lose and need a low-impact path</div>
+        <div class="for-item"><span style="color:var(--tan);font-size:14px">✓</span> Running beats you up but you still want cardio results</div>
+        <div class="for-item"><span style="color:var(--tan);font-size:14px">✓</span> You want to train outside, not in a gym</div>
+        <div class="for-item"><span style="color:var(--tan);font-size:14px">✓</span> You have bad knees, hips, or previous injuries</div>
+        <div class="for-item"><span style="color:var(--tan);font-size:14px">✓</span> You've tried programs that worked short-term then failed</div>
+        <div class="for-item"><span style="color:var(--tan);font-size:14px">✓</span> You want something you can do consistently for years</div>
+      </div>
+      <div class="for-card no">
+        <div class="for-card-label">This is NOT for you</div>
+        <div class="for-item"><span style="font-size:14px">✕</span> You're looking for a magic hack that requires no effort</div>
+        <div class="for-item"><span style="font-size:14px">✕</span> You want a 7-day crash result you can't sustain</div>
+        <div class="for-item"><span style="font-size:14px">✕</span> You refuse to walk outside under any conditions</div>
+        <div class="for-item"><span style="font-size:14px">✕</span> You have a spinal condition without physician clearance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="faq section">
+  <div class="container">
+    <div class="section-label">Common questions</div>
+    <h2 class="section-headline">You Have Questions.<br><span>Here Are Straight Answers.</span></h2>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Do I need any special equipment to start?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">No. You need a backpack you can load with 15–20 lbs of weight (textbooks, a bag of rice in a sealed bag, or a cheap barbell plate wrapped in a towel all work). The guide covers gear selection at every budget level — from free improvisation to purpose-built rucksacks — in full detail.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          I'm very overweight and out of shape. Is this too advanced for me?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">This program was specifically designed with you in mind. Phase I is three weeks of unweighted walking at your own pace. There is no load requirement until Week 4, and starting load is kept deliberately light. If you can walk to the end of your street, you can start this program.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How is the meal plan different from a standard diet?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">It's built around two distinct daily protocols: Ruck Day and Rest Day. Most diets treat every day identically, which is metabolically naive. On days you ruck, you need more carbohydrates to fuel the effort and support recovery. On rest days, you carb down and fat up. The result is a diet that works with your training instead of fighting it.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What if I try it and it's not for me?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">Because this is an instantly delivered digital product, all sales are final. We stand behind the quality of this material — it's written by a veteran rucker, built on peer-reviewed science, and designed to produce real results when followed. Please read the product description carefully before purchasing to make sure it's the right fit for you.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Is the order bump really only available here?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">Yes. The Meal Plan and Training Log are available individually for $17–$27 each. The order bump combining both for $27 total is a checkout-only offer. Once you complete your purchase, that pricing is gone. It will not appear in your confirmation email, on our website, or anywhere else.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How do I receive the PDFs after purchase?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">Instantly. After checkout you'll be redirected to a download page and receive an email with download links within two minutes. The files are standard PDFs that work on any phone, tablet, laptop, or desktop. Print them, annotate them, store them — they're yours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL CTA ── -->
+<section class="final-cta">
+  <div class="container" style="text-align:center">
+    <div class="section-label" style="text-align:center">The road is waiting</div>
+    <div class="final-divider"></div>
+    <h2 class="final-cta-headline">Load Your Pack.<br>Change Your Body.</h2>
+    <p class="final-cta-sub">Every day you wait is a day you're not burning 500+ calories with a loaded pack on your back. The program is ready. You just have to start.</p>
+    <a href="#checkout" class="btn-primary pulse" style="font-size:24px;padding:20px 52px">Get The Guide — $27 &rarr;</a>
+    <div style="margin-top:20px;color:rgba(245,237,216,0.45);font-size:13px">
+      All sales final — digital delivery &nbsp;·&nbsp; Instant download &nbsp;·&nbsp; No subscription
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div style="margin-bottom:12px">
+    <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--tan)">THE RUCKING GUIDE</span>
+  </div>
+  <div>© 2025 The Rucking Guide. All rights reserved.</div>
+  <div style="margin-top:8px">
+    <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="#">Terms of Service</a> &nbsp;·&nbsp;
+    <a href="#">Contact</a>
+  </div>
+  <div style="margin-top:16px;max-width:480px;margin-left:auto;margin-right:auto;font-size:11px">
+    DISCLAIMER: Results vary. This guide is for informational purposes only and does not constitute medical advice. Consult a physician before beginning any new exercise program.
+  </div>
+</footer>
+
+<script>
+function updateTotal(cb) {
+  const price = document.getElementById('total-price');
+  const sub = document.getElementById('total-sub');
+  if (cb.checked) {
+    price.textContent = '$54';
+    sub.textContent = 'Guide + Meal Plan + Training Log';
+  } else {
+    price.textContent = '$27';
+    sub.textContent = 'The Ultimate Rucking Guide';
+  }
+}
+
+function handleCheckout() {
+  const bump = document.getElementById('bump').checked;
+  const msg = bump
+    ? 'Processing your complete bundle order ($54)...\n\nYou\'ll receive: The Ultimate Rucking Guide + The Rucker\'s Meal Plan + The 12-Week Training Log'
+    : 'Processing your order ($27)...\n\nYou\'ll receive: The Ultimate Rucking Guide for Fat Loss';
+  alert(msg + '\n\n[Connect your payment processor — Stripe, Gumroad, ThriveCart, etc. — to this button]');
+}
+
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.stat-card, .product-card, .testi-card, .for-card, .faq-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
