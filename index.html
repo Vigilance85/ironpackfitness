@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Ultimate Rucking Guide — Lose Fat. Build Strength. No Excuses.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://gumroad.com/js/gumroad.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -440,7 +441,7 @@ footer a{color:rgba(245,237,216,0.45);text-decoration:none}
   <div class="nav-logo">THE RUCKING GUIDE</div>
   <div style="display:flex;align-items:center">
     <span class="nav-price">Get the Guide — $27</span>
-    <a href="#checkout" class="nav-cta">Get Instant Access</a>
+    <a href="https://omnevellum.gumroad.com/l/dsjuzz?wanted=true" data-gumroad-overlay-checkout="true" class="nav-cta">Get Instant Access</a>
   </div>
 </nav>
 
@@ -455,7 +456,7 @@ footer a{color:rgba(245,237,216,0.45);text-decoration:none}
   </h1>
   <p class="hero-sub">The complete field manual for transitioning from simple walking to weighted carries — skyrocketing caloric burn and building real functional strength, written by a veteran rucker with zero fluff and zero filler.</p>
   <div class="hero-cta-group">
-    <a href="#checkout" class="btn-primary pulse">Get The Guide — $27 &rarr;</a>
+    <a href="https://omnevellum.gumroad.com/l/dsjuzz?wanted=true" data-gumroad-overlay-checkout="true" class="btn-primary pulse">Get The Guide — $27 &rarr;</a>
     <span class="hero-subtext">Instant PDF download &nbsp;·&nbsp; No subscriptions &nbsp;·&nbsp; Yours forever</span>
     <div class="hero-proof">
       <div class="proof-pill"><div class="proof-dot"></div>43 structured training sessions</div>
@@ -631,7 +632,7 @@ footer a{color:rgba(245,237,216,0.45);text-decoration:none}
       </div>
     </div>
     <div style="padding:24px 32px 32px">
-      <button class="btn-checkout" onclick="handleCheckout()">Complete My Order &rarr;</button>
+      <button class="btn-checkout" id="checkout-btn" onclick="handleCheckout()">Complete My Order &rarr;</button>
       <div class="checkout-trust">
         <div class="trust-item"><span class="trust-icon">🔒</span> 256-bit SSL Secured</div>
         <div class="trust-item"><span class="trust-icon">⚡</span> Instant PDF Delivery</div>
@@ -727,7 +728,7 @@ footer a{color:rgba(245,237,216,0.45);text-decoration:none}
     <div class="final-divider"></div>
     <h2 class="final-cta-headline">Load Your Pack.<br>Change Your Body.</h2>
     <p class="final-cta-sub">Every day you wait is a day you're not burning 500+ calories with a loaded pack on your back. The program is ready. You just have to start.</p>
-    <a href="#checkout" class="btn-primary pulse" style="font-size:24px;padding:20px 52px">Get The Guide — $27 &rarr;</a>
+    <a href="https://omnevellum.gumroad.com/l/dsjuzz?wanted=true" data-gumroad-overlay-checkout="true" class="btn-primary pulse" style="font-size:24px;padding:20px 52px">Get The Guide — $27 &rarr;</a>
     <div style="margin-top:20px;color:rgba(245,237,216,0.45);font-size:13px">
       All sales final — digital delivery &nbsp;·&nbsp; Instant download &nbsp;·&nbsp; No subscription
     </div>
@@ -741,9 +742,9 @@ footer a{color:rgba(245,237,216,0.45);text-decoration:none}
   </div>
   <div>© 2025 The Rucking Guide. All rights reserved.</div>
   <div style="margin-top:8px">
-    <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
-    <a href="#">Terms of Service</a> &nbsp;·&nbsp;
-    <a href="#">Contact</a>
+    <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of Service</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@ironpackfitness.com">Contact</a>
   </div>
   <div style="margin-top:16px;max-width:480px;margin-left:auto;margin-right:auto;font-size:11px">
     DISCLAIMER: Results vary. This guide is for informational purposes only and does not constitute medical advice. Consult a physician before beginning any new exercise program.
@@ -751,24 +752,33 @@ footer a{color:rgba(245,237,216,0.45);text-decoration:none}
 </footer>
 
 <script>
+const GUIDE_URL  = 'https://omnevellum.gumroad.com/l/dsjuzz?wanted=true';
+const BUNDLE_URL = 'https://omnevellum.gumroad.com/l/madwkkk?wanted=true';
+
 function updateTotal(cb) {
   const price = document.getElementById('total-price');
-  const sub = document.getElementById('total-sub');
+  const sub   = document.getElementById('total-sub');
+  const btn   = document.getElementById('checkout-btn');
   if (cb.checked) {
     price.textContent = '$54';
-    sub.textContent = 'Guide + Meal Plan + Training Log';
+    sub.textContent   = 'Guide + Meal Plan + Training Log';
+    btn.textContent   = 'Complete My Order — Full Bundle →';
   } else {
     price.textContent = '$27';
-    sub.textContent = 'The Ultimate Rucking Guide';
+    sub.textContent   = 'The Ultimate Rucking Guide';
+    btn.textContent   = 'Complete My Order →';
   }
 }
 
 function handleCheckout() {
   const bump = document.getElementById('bump').checked;
-  const msg = bump
-    ? 'Processing your complete bundle order ($54)...\n\nYou\'ll receive: The Ultimate Rucking Guide + The Rucker\'s Meal Plan + The 12-Week Training Log'
-    : 'Processing your order ($27)...\n\nYou\'ll receive: The Ultimate Rucking Guide for Fat Loss';
-  alert(msg + '\n\n[Connect your payment processor — Stripe, Gumroad, ThriveCart, etc. — to this button]');
+  const url  = bump ? BUNDLE_URL : GUIDE_URL;
+  // Use Gumroad overlay if their script has loaded, otherwise fall back to new tab
+  if (window.GumroadOverlay) {
+    window.GumroadOverlay.show(url);
+  } else {
+    window.open(url, '_blank');
+  }
 }
 
 function toggleFaq(el) {
