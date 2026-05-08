@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dopamine Movement — Fitness for the ADHD Brain | Iron Pack Fitness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --void:#0A0A14;
+  --indigo:#1A1A3E;
+  --indigo-mid:#252550;
+  --purple:#4A3580;
+  --cyan:#00C8E0;
+  --cyan-lite:#C0F0F8;
+  --coral:#FF6B4A;
+  --coral-lite:#FFE8E0;
+  --yellow:#FFE500;
+  --cream:#FAFAF5;
+  --lavender:#E8E4F8;
+  --mid-gray:#6B6B8A;
+  --rule:#2A2A4A;
+  --white:#FFFFFF;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Space Grotesk',sans-serif;
+  background:var(--void);
+  color:var(--white);
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;line-height:1.05}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:0.4;
+}
+
+/* ── NAV ── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:14px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  backdrop-filter:blur(20px);
+  background:rgba(10,10,20,0.85);
+  border-bottom:1px solid rgba(0,200,224,0.15);
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:15px;
+  color:var(--cyan);letter-spacing:0.08em;text-decoration:none;
+}
+.nav-cta{
+  background:var(--coral);color:var(--void);
+  font-family:'Syne',sans-serif;font-weight:700;font-size:13px;
+  letter-spacing:0.06em;text-transform:uppercase;
+  border:none;padding:10px 24px;cursor:pointer;
+  transition:transform 0.15s,background 0.15s;
+  text-decoration:none;display:inline-block;
+  clip-path:polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+.nav-cta:hover{background:var(--yellow);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:flex-start;justify-content:center;
+  padding:140px 64px 80px;
+  position:relative;overflow:hidden;
+}
+/* Animated grid background */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(0,200,224,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,200,224,0.06) 1px, transparent 1px);
+  background-size:60px 60px;
+  animation:gridMove 20s linear infinite;
+}
+@keyframes gridMove{
+  0%{background-position:0 0}
+  100%{background-position:60px 60px}
+}
+/* Glowing orbs */
+.orb{
+  position:absolute;border-radius:50%;filter:blur(80px);
+  animation:float 8s ease-in-out infinite;
+}
+.orb-1{width:400px;height:400px;background:rgba(74,53,128,0.35);top:-100px;right:-50px}
+.orb-2{width:300px;height:300px;background:rgba(0,200,224,0.15);bottom:100px;left:-100px;animation-delay:-4s}
+.orb-3{width:200px;height:200px;background:rgba(255,107,74,0.12);top:50%;right:20%;animation-delay:-2s}
+@keyframes float{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-30px) scale(1.05)}
+}
+.hero-content{position:relative;z-index:1;max-width:800px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'DM Mono',monospace;font-size:11px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:28px;
+  opacity:0;animation:slideUp 0.6s 0.2s ease forwards;
+}
+.hero-eyebrow::before{
+  content:'';width:32px;height:1px;background:var(--cyan);
+}
+.hero-headline{
+  font-size:clamp(52px,8vw,96px);font-weight:800;
+  line-height:0.95;margin-bottom:28px;
+  opacity:0;animation:slideUp 0.7s 0.35s ease forwards;
+}
+.hero-headline .line-1{display:block;color:var(--white)}
+.hero-headline .line-2{
+  display:block;color:transparent;
+  -webkit-text-stroke:2px var(--cyan);
+}
+.hero-headline .line-3{display:block;color:var(--coral)}
+.hero-sub{
+  font-size:18px;line-height:1.65;color:rgba(255,255,255,0.65);
+  max-width:560px;margin-bottom:48px;
+  opacity:0;animation:slideUp 0.7s 0.5s ease forwards;
+}
+.hero-sub em{color:var(--cyan);font-style:normal;font-weight:600}
+.hero-actions{
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+  opacity:0;animation:slideUp 0.7s 0.65s ease forwards;
+}
+.btn-hero{
+  background:var(--cyan);color:var(--void);
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:16px;letter-spacing:0.04em;
+  padding:18px 40px;text-decoration:none;
+  display:inline-block;position:relative;
+  clip-path:polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  transition:transform 0.2s;
+  animation:pulse-cyan 3s ease infinite;
+}
+.btn-hero:hover{transform:translateY(-2px)}
+@keyframes pulse-cyan{
+  0%,100%{box-shadow:0 0 0 0 rgba(0,200,224,0.4)}
+  50%{box-shadow:0 0 0 16px rgba(0,200,224,0)}
+}
+.hero-subtext{font-size:12px;color:rgba(255,255,255,0.35);font-family:'DM Mono',monospace;letter-spacing:0.05em}
+.hero-proof{
+  display:flex;gap:32px;flex-wrap:wrap;margin-top:64px;
+  padding-top:32px;border-top:1px solid var(--rule);
+  opacity:0;animation:slideUp 0.7s 0.8s ease forwards;
+}
+.proof-item{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.5)}
+.proof-dot{width:4px;height:4px;background:var(--cyan);border-radius:50%;flex-shrink:0}
+
+@keyframes slideUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ── PAIN SECTION ── */
+.pain{
+  padding:100px 64px;
+  position:relative;
+  background:linear-gradient(180deg, var(--void) 0%, var(--indigo) 100%);
+}
+.section-mono{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:16px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-mono::after{content:'';flex:1;height:1px;background:rgba(0,200,224,0.2)}
+.pain-headline{
+  font-size:clamp(36px,5vw,60px);font-weight:800;
+  color:var(--white);margin-bottom:16px;max-width:700px;
+}
+.pain-headline span{color:var(--cyan)}
+.pain-body{
+  color:rgba(255,255,255,0.6);font-size:17px;line-height:1.7;
+  max-width:600px;margin-bottom:48px;
+}
+.pain-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:2px;max-width:800px;
+}
+.pain-item{
+  padding:20px 24px;
+  background:rgba(255,255,255,0.03);
+  border-left:2px solid rgba(255,107,74,0.4);
+  font-size:14px;color:rgba(255,255,255,0.65);
+  line-height:1.5;
+  transition:background 0.2s,border-color 0.2s;
+}
+.pain-item:hover{background:rgba(255,107,74,0.06);border-color:var(--coral)}
+.pain-item strong{color:var(--coral);display:block;margin-bottom:4px;font-size:12px;font-family:'DM Mono',monospace;letter-spacing:0.1em}
+.pivot{
+  margin-top:48px;padding:28px 32px;
+  border:1px solid rgba(0,200,224,0.2);
+  background:rgba(0,200,224,0.04);
+  max-width:700px;
+  border-left:3px solid var(--cyan);
+}
+.pivot p{font-size:17px;line-height:1.65;color:rgba(255,255,255,0.75);font-style:italic}
+.pivot strong{color:var(--cyan);font-style:normal}
+
+/* ── STATS ── */
+.stats{
+  padding:80px 64px;
+  background:var(--indigo-mid);
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+.stat{
+  padding:48px 40px;text-align:center;
+  background:var(--indigo-mid);
+  position:relative;
+}
+.stat::after{
+  content:'';position:absolute;right:0;top:20%;bottom:20%;
+  width:1px;background:var(--rule);
+}
+.stat:last-child::after{display:none}
+.stat-num{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:56px;color:var(--cyan);line-height:1;
+  margin-bottom:8px;
+}
+.stat-num sup{font-size:24px;vertical-align:super}
+.stat-label{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.5;max-width:180px;margin:0 auto}
+
+/* ── PRODUCTS ── */
+.products{
+  padding:100px 64px;
+  background:linear-gradient(180deg,var(--indigo) 0%,var(--void) 100%);
+}
+.products-headline{
+  font-size:clamp(36px,5vw,58px);font-weight:800;
+  color:var(--white);margin-bottom:8px;
+}
+.products-headline span{color:var(--coral)}
+.products-sub{
+  color:rgba(255,255,255,0.5);font-size:16px;
+  margin-bottom:56px;max-width:560px;
+}
+.product-card{
+  margin-bottom:20px;padding:32px 36px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  border-left:3px solid var(--cyan);
+  transition:background 0.2s,border-color 0.2s;
+}
+.product-card:hover{background:rgba(0,200,224,0.04);border-color:var(--cyan)}
+.product-tag{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:10px;
+}
+.product-name{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:22px;color:var(--white);margin-bottom:10px;
+}
+.product-desc{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:16px}
+.product-features{display:flex;flex-wrap:wrap;gap:8px}
+.feature-chip{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.08em;
+  padding:4px 12px;
+  border:1px solid rgba(0,200,224,0.25);
+  color:rgba(0,200,224,0.7);
+  background:rgba(0,200,224,0.04);
+}
+
+/* ── PRICING ── */
+.pricing{
+  padding:100px 64px;
+  background:var(--void);
+}
+.pricing-headline{
+  font-size:clamp(36px,5vw,58px);font-weight:800;
+  color:var(--white);margin-bottom:8px;text-align:center;
+}
+.pricing-headline span{color:var(--cyan)}
+.pricing-sub{
+  color:rgba(255,255,255,0.45);font-size:16px;
+  text-align:center;margin-bottom:64px;
+}
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2px;
+  max-width:1100px;margin:0 auto;
+}
+.tier{
+  padding:36px 28px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  display:flex;flex-direction:column;
+  position:relative;
+  transition:transform 0.2s;
+}
+.tier:hover{transform:translateY(-4px)}
+.tier.featured{
+  background:rgba(0,200,224,0.07);
+  border-color:var(--cyan);
+  transform:translateY(-8px);
+}
+.tier-badge{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:var(--cyan);color:var(--void);
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.12em;text-transform:uppercase;
+  padding:4px 16px;white-space:nowrap;
+}
+.tier-name{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:15px;color:rgba(255,255,255,0.6);
+  margin-bottom:8px;letter-spacing:0.05em;
+  text-transform:uppercase;
+}
+.tier-price{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:48px;color:var(--white);line-height:1;
+  margin-bottom:4px;
+}
+.tier-price sup{font-size:20px;font-weight:400;vertical-align:super;color:rgba(255,255,255,0.5)}
+.tier-savings{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--coral);letter-spacing:0.08em;
+  margin-bottom:24px;
+}
+.tier-divider{height:1px;background:var(--rule);margin-bottom:20px}
+.tier-items{list-style:none;flex:1;margin-bottom:24px}
+.tier-items li{
+  font-size:13px;color:rgba(255,255,255,0.55);
+  padding:6px 0;display:flex;align-items:flex-start;gap:8px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.tier-items li:last-child{border-bottom:none}
+.tier-check{color:var(--cyan);flex-shrink:0;font-weight:700}
+.tier-check.dim{color:rgba(255,255,255,0.2)}
+.btn-tier{
+  width:100%;padding:14px;text-align:center;
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:0.06em;text-transform:uppercase;
+  border:1px solid rgba(0,200,224,0.4);
+  color:var(--cyan);background:transparent;
+  cursor:pointer;text-decoration:none;display:block;
+  transition:all 0.2s;
+}
+.btn-tier:hover{background:var(--cyan);color:var(--void);border-color:var(--cyan)}
+.btn-tier.featured-btn{
+  background:var(--cyan);color:var(--void);
+  border-color:var(--cyan);
+}
+.btn-tier.featured-btn:hover{background:var(--yellow);border-color:var(--yellow)}
+
+/* ── WHO IT'S FOR ── */
+.for-section{
+  padding:100px 64px;
+  background:var(--indigo-mid);
+}
+.for-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;max-width:900px}
+.for-card{padding:28px 28px}
+.for-card.yes{
+  background:rgba(0,200,224,0.04);
+  border-left:3px solid var(--cyan);
+}
+.for-card.no{
+  background:rgba(255,255,255,0.02);
+  border-left:3px solid rgba(255,255,255,0.1);
+}
+.for-label{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.18em;text-transform:uppercase;
+  margin-bottom:16px;
+}
+.for-card.yes .for-label{color:var(--cyan)}
+.for-card.no .for-label{color:rgba(255,255,255,0.25)}
+.for-item{
+  font-size:14px;line-height:1.5;padding:8px 0;
+  display:flex;align-items:flex-start;gap:10px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.for-card.yes .for-item{color:rgba(255,255,255,0.7)}
+.for-card.no .for-item{color:rgba(255,255,255,0.3)}
+
+/* ── TESTIMONIALS ── */
+.testimonials{padding:100px 64px;background:var(--void)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.testi{
+  padding:28px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  border-top:2px solid var(--cyan);
+  position:relative;
+}
+.testi-quote{
+  font-size:14px;color:rgba(255,255,255,0.65);
+  line-height:1.65;font-style:italic;margin-bottom:20px;
+}
+.testi-quote::before{
+  content:'"';font-family:'Syne',sans-serif;font-size:48px;
+  color:rgba(0,200,224,0.15);line-height:0;
+  display:block;margin-bottom:12px;margin-top:12px;
+}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--purple);display:flex;align-items:center;
+  justify-content:center;font-family:'Syne',sans-serif;
+  font-weight:700;font-size:13px;color:var(--cyan);flex-shrink:0;
+}
+.testi-name{font-weight:600;font-size:13px}
+.testi-meta{font-size:11px;color:rgba(255,255,255,0.35);font-family:'DM Mono',monospace}
+
+/* ── CROSS-PROMO ── */
+.cross-promo{
+  padding:80px 64px;
+  background:var(--indigo);
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+.promo-inner{
+  max-width:900px;margin:0 auto;
+  display:grid;grid-template-columns:1fr auto;
+  gap:48px;align-items:center;
+}
+.promo-eyebrow{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.2em;color:rgba(200,169,110,0.8);
+  text-transform:uppercase;margin-bottom:12px;
+}
+.promo-headline{
+  font-size:clamp(28px,4vw,42px);font-weight:800;
+  color:var(--white);margin-bottom:12px;
+}
+.promo-headline span{color:rgba(200,169,110,1)}
+.promo-body{
+  font-size:15px;color:rgba(255,255,255,0.55);
+  line-height:1.65;margin-bottom:24px;max-width:520px;
+}
+.btn-promo{
+  display:inline-block;padding:14px 32px;
+  background:transparent;
+  border:1px solid rgba(200,169,110,0.5);
+  color:rgba(200,169,110,1);
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:0.06em;text-transform:uppercase;
+  text-decoration:none;
+  transition:all 0.2s;
+}
+.btn-promo:hover{background:rgba(200,169,110,0.1);border-color:rgba(200,169,110,0.8)}
+.promo-pack{
+  width:180px;height:180px;
+  background:rgba(200,169,110,0.08);
+  border:1px solid rgba(200,169,110,0.2);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:24px;flex-shrink:0;
+}
+.promo-pack-icon{
+  font-size:36px;margin-bottom:12px;
+}
+.promo-pack-label{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:13px;color:rgba(200,169,110,0.8);
+  line-height:1.3;
+}
+
+/* ── FAQ ── */
+.faq{padding:100px 64px;background:var(--void)}
+.faq-list{max-width:700px;margin-top:48px}
+.faq-item{border-bottom:1px solid var(--rule)}
+.faq-q{
+  font-family:'Syne',sans-serif;font-weight:600;font-size:17px;
+  color:var(--white);cursor:pointer;
+  padding:20px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  user-select:none;
+}
+.faq-toggle{
+  width:28px;height:28px;border:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--cyan);font-size:18px;flex-shrink:0;
+  transition:transform 0.25s,background 0.25s;
+}
+.faq-a{
+  font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;
+  max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s;
+}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:20px}
+.faq-item.open .faq-toggle{transform:rotate(45deg);background:rgba(0,200,224,0.1);border-color:var(--cyan)}
+
+/* ── FINAL CTA ── */
+.final-cta{
+  padding:120px 64px;
+  background:var(--indigo-mid);
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.final-cta::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,rgba(74,53,128,0.4) 0%,transparent 70%);
+}
+.final-cta-content{position:relative;z-index:1}
+.final-cta-headline{
+  font-size:clamp(42px,7vw,80px);font-weight:800;
+  color:var(--white);margin-bottom:20px;
+}
+.final-cta-headline span{
+  color:transparent;
+  -webkit-text-stroke:2px var(--cyan);
+}
+.final-cta-sub{
+  font-size:18px;color:rgba(255,255,255,0.55);
+  max-width:520px;margin:0 auto 48px;line-height:1.65;
+}
+.final-divider{
+  width:48px;height:2px;background:var(--cyan);
+  margin:0 auto 32px;
+}
+
+/* ── FOOTER ── */
+footer{
+  padding:40px 64px;
+  background:var(--void);
+  border-top:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.footer-logo{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:14px;color:var(--cyan);letter-spacing:0.08em;
+}
+.footer-links{display:flex;gap:24px}
+.footer-links a{
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:rgba(255,255,255,0.3);text-decoration:none;
+  letter-spacing:0.06em;
+}
+.footer-links a:hover{color:var(--cyan)}
+.footer-copy{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:rgba(255,255,255,0.2);letter-spacing:0.06em;
+  width:100%;margin-top:12px;
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero{padding:120px 32px 80px}
+  .pain,.stats,.products,.pricing,.for-section,.testimonials,.cross-promo,.faq,.final-cta{padding:80px 32px}
+  .pricing-grid{grid-template-columns:1fr 1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .stat::after{display:none}
+  .for-grid{grid-template-columns:1fr}
+  .pain-grid{grid-template-columns:1fr}
+  .promo-inner{grid-template-columns:1fr}
+  .promo-pack{display:none}
+  footer{flex-direction:column;align-items:flex-start}
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18147260945"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18147260945');
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">IRON PACK FITNESS</a>
+  <a href="#pricing" class="nav-cta">Get the System</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Fitness built for your brain</div>
+    <h1 class="hero-headline">
+      <span class="line-1">Your Brain</span>
+      <span class="line-2">Isn't Broken.</span>
+      <span class="line-3">It's Different.</span>
+    </h1>
+    <p class="hero-sub">
+      The complete fitness system built specifically for the ADHD brain —
+      <em>not adapted from a neurotypical program</em>, but designed from the ground up
+      around how you actually think, move, and stay consistent.
+      Written by a veteran ADHD athlete who figured it out the hard way.
+    </p>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-hero">Get the Complete System →</a>
+      <span class="hero-subtext">Instant PDF download &nbsp;·&nbsp; No subscription &nbsp;·&nbsp; All sales final</span>
+    </div>
+    <div class="hero-proof">
+      <div class="proof-item"><div class="proof-dot"></div>Written by a veteran ADHD athlete</div>
+      <div class="proof-item"><div class="proof-dot"></div>Neuroscience-backed framework</div>
+      <div class="proof-item"><div class="proof-dot"></div>4 complete expert guides</div>
+      <div class="proof-item"><div class="proof-dot"></div>90-day tracking system included</div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="section-mono">The problem with every other program</div>
+  <h2 class="pain-headline reveal">You've Failed Programs.<br><span>Programs Have Failed You.</span></h2>
+  <p class="pain-body reveal">Every fitness program you've tried was built for a neurotypical brain. Yours isn't. That is not a personal failure. That is a design mismatch. Here's what's been happening:</p>
+  <div class="pain-grid reveal">
+    <div class="pain-item"><strong>Initiation Failure</strong>The executive function cost of starting overwhelms your daily cognitive budget before you even put shoes on</div>
+    <div class="pain-item"><strong>Boring Repetition</strong>Identical workouts produce diminishing dopamine returns. By week 3, the reward is gone and so is the motivation</div>
+    <div class="pain-item"><strong>All-or-Nothing Spiral</strong>Miss one session and your ADHD brain catastrophizes into abandonment. One missed workout becomes a month off</div>
+    <div class="pain-item"><strong>Future-Goal Blindness</strong>Your brain cannot sustain motivation from results that are six months away. It needs immediate, visceral reward to move</div>
+    <div class="pain-item"><strong>Wrong Timing</strong>By afternoon, your executive function is exhausted. "I'll go after work" is a promise your ADHD brain cannot keep</div>
+    <div class="pain-item"><strong>No Recovery Plan</strong>Zero protocols for bad days. Most programs don't acknowledge that bad days exist — yours just stops</div>
+  </div>
+  <div class="pivot reveal">
+    <p>This system was built by someone who lived every one of those failure modes before figuring out what actually works. <strong>The Dopamine Movement system doesn't fight your ADHD brain. It works with it.</strong></p>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat reveal">
+    <div class="stat-num">14<sup>lbs</sup></div>
+    <div class="stat-label">Lost by the author following this exact protocol — no gimmicks, no surgery, real food and real training</div>
+  </div>
+  <div class="stat reveal">
+    <div class="stat-num">4<sup>hrs</sup></div>
+    <div class="stat-label">Post-workout window where dopamine, norepinephrine, and BDNF are elevated — your ADHD brain at its peak</div>
+  </div>
+  <div class="stat reveal">
+    <div class="stat-num">90<sup>days</sup></div>
+    <div class="stat-label">The research-backed timeframe for a habit to become neurologically automatic — tracked in every guide</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="section-mono reveal">What's in the system</div>
+  <h2 class="products-headline reveal">Four Guides.<br><span>One Complete System.</span></h2>
+  <p class="products-sub reveal">Each guide works standalone. Together they form an end-to-end ADHD fitness operating system that covers training, nutrition, habits, and recovery.</p>
+
+  <div class="product-card reveal">
+    <div class="product-tag">Core Guide — The Foundation</div>
+    <div class="product-name">Dopamine Movement: Fitness for the ADHD Brain</div>
+    <p class="product-desc">12 expert chapters covering the neuroscience of ADHD and exercise, the 4-day gym framework with ADHD-specific modifications, the outdoor movement protocol, the 90-day milestone system, and the recovery protocol for bad days. This is the system. Everything else builds on it.</p>
+    <div class="product-features">
+      <span class="feature-chip">12 chapters</span>
+      <span class="feature-chip">4-day gym program</span>
+      <span class="feature-chip">Neuroscience framework</span>
+      <span class="feature-chip">ADHD recovery protocol</span>
+      <span class="feature-chip">App recommendations</span>
+      <span class="feature-chip">90-day milestones</span>
+    </div>
+  </div>
+
+  <div class="product-card reveal">
+    <div class="product-tag">Companion 1 — The Habit System</div>
+    <div class="product-name">The Morning Anchor Protocol + 90-Day Tracker</div>
+    <p class="product-desc">The exact 6AM morning system the author follows daily — feet on floor in 30 seconds, zero phone, gym by 6:30. Written in first person with the science behind every decision. Includes 90 days of daily tracking pages, weekly check-ins, and Day 30/60/90 milestone assessments.</p>
+    <div class="product-features">
+      <span class="feature-chip">First-person field guide</span>
+      <span class="feature-chip">Step-by-step protocol</span>
+      <span class="feature-chip">90-day daily tracker</span>
+      <span class="feature-chip">Weekly check-ins</span>
+      <span class="feature-chip">Milestone assessments</span>
+      <span class="feature-chip">Customizable workbook</span>
+    </div>
+  </div>
+
+  <div class="product-card reveal">
+    <div class="product-tag">Companion 2 — The Fuel System</div>
+    <div class="product-name">The Dopamine Meal Plan: Eating for the ADHD Brain</div>
+    <p class="product-desc">A carnivore-adjacent, anti-soy, two-meal-per-day nutrition protocol built around brain chemistry and cognitive performance. Includes the science of soy and ADHD brain fog, a full 7-day meal plan, the 30-minute night-before prep system, and a complete protein reference guide.</p>
+    <div class="product-features">
+      <span class="feature-chip">Anti-soy protocol</span>
+      <span class="feature-chip">Two-meal framework</span>
+      <span class="feature-chip">7-day meal plan</span>
+      <span class="feature-chip">Soy & ADHD science</span>
+      <span class="feature-chip">30-min prep system</span>
+      <span class="feature-chip">Protein reference guide</span>
+    </div>
+  </div>
+
+  <div class="product-card reveal">
+    <div class="product-tag">Companion 3 — The Rescue System</div>
+    <div class="product-name">ADHD Rescue Workouts: When Everything Says Stop</div>
+    <p class="product-desc">13 complete rescue workouts organized by time available (5, 10, 20 minutes) AND by ADHD state (brain fog, low energy, anxiety, hyperfocus crash). Home and gym versions for every situation. Urgent but compassionate — built for the days when showing up feels impossible.</p>
+    <div class="product-features">
+      <span class="feature-chip">13 rescue workouts</span>
+      <span class="feature-chip">By time available</span>
+      <span class="feature-chip">By ADHD state</span>
+      <span class="feature-chip">Home & gym versions</span>
+      <span class="feature-chip">Quick-reference card</span>
+      <span class="feature-chip">Permission protocol</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-mono" style="text-align:center;justify-content:center">Choose your system</div>
+  <h2 class="pricing-headline reveal">Simple.<br><span>Honest.</span> Priced Right.</h2>
+  <p class="pricing-sub reveal">Every tier includes instant PDF delivery. No subscription. No upsells. All sales final.</p>
+
+  <div class="pricing-grid reveal">
+
+    <!-- TIER 1 -->
+    <div class="tier">
+      <div class="tier-name">Starter</div>
+      <div class="tier-price"><sup>$</sup>37</div>
+      <div class="tier-savings">Main guide only</div>
+      <div class="tier-divider"></div>
+      <ul class="tier-items">
+        <li><span class="tier-check">✓</span> Dopamine Movement Guide</li>
+        <li><span class="tier-check dim">—</span> <span style="opacity:0.3">Morning Anchor Protocol</span></li>
+        <li><span class="tier-check dim">—</span> <span style="opacity:0.3">90-Day Tracker</span></li>
+        <li><span class="tier-check dim">—</span> <span style="opacity:0.3">Dopamine Meal Plan</span></li>
+        <li><span class="tier-check dim">—</span> <span style="opacity:0.3">ADHD Rescue Workouts</span></li>
+      </ul>
+      <a href="https://omnevellum.gumroad.com/l/dopaminefitnessguide?wanted=true" data-gumroad-overlay-checkout="true" class="btn-tier">Get the Guide →</a>
+    </div>
+
+    <!-- TIER 2 -->
+    <div class="tier">
+      <div class="tier-name">Starter Bundle</div>
+      <div class="tier-price"><sup>$</sup>57</div>
+      <div class="tier-savings">Save $17 vs. separate</div>
+      <div class="tier-divider"></div>
+      <ul class="tier-items">
+        <li><span class="tier-check">✓</span> Dopamine Movement Guide</li>
+        <li><span class="tier-check">✓</span> Morning Anchor Protocol</li>
+        <li><span class="tier-check">✓</span> 90-Day Tracker</li>
+        <li><span class="tier-check dim">—</span> <span style="opacity:0.3">Dopamine Meal Plan</span></li>
+        <li><span class="tier-check dim">—</span> <span style="opacity:0.3">ADHD Rescue Workouts</span></li>
+      </ul>
+      <a href="https://omnevellum.gumroad.com/l/dopaminestarterbundle?wanted=true" data-gumroad-overlay-checkout="true" class="btn-tier">Get the Bundle →</a>
+    </div>
+
+    <!-- TIER 3 -->
+    <div class="tier featured">
+      <div class="tier-badge">Most Popular</div>
+      <div class="tier-name">Performance Bundle</div>
+      <div class="tier-price"><sup>$</sup>74</div>
+      <div class="tier-savings">Save $26 vs. separate</div>
+      <div class="tier-divider"></div>
+      <ul class="tier-items">
+        <li><span class="tier-check">✓</span> Dopamine Movement Guide</li>
+        <li><span class="tier-check">✓</span> Morning Anchor Protocol</li>
+        <li><span class="tier-check">✓</span> 90-Day Tracker</li>
+        <li><span class="tier-check">✓</span> Dopamine Meal Plan</li>
+        <li><span class="tier-check dim">—</span> <span style="opacity:0.3">ADHD Rescue Workouts</span></li>
+      </ul>
+      <a href="https://omnevellum.gumroad.com/l/dopamineperformancebundle?wanted=true" data-gumroad-overlay-checkout="true" class="btn-tier featured-btn">Get the Bundle →</a>
+    </div>
+
+    <!-- TIER 4 -->
+    <div class="tier">
+      <div class="tier-name">Complete System</div>
+      <div class="tier-price"><sup>$</sup>97</div>
+      <div class="tier-savings">Save $42 — best value</div>
+      <div class="tier-divider"></div>
+      <ul class="tier-items">
+        <li><span class="tier-check">✓</span> Dopamine Movement Guide</li>
+        <li><span class="tier-check">✓</span> Morning Anchor Protocol</li>
+        <li><span class="tier-check">✓</span> 90-Day Tracker</li>
+        <li><span class="tier-check">✓</span> Dopamine Meal Plan</li>
+        <li><span class="tier-check">✓</span> ADHD Rescue Workouts</li>
+      </ul>
+      <a href="https://omnevellum.gumroad.com/l/completeperformancesystem?wanted=true" data-gumroad-overlay-checkout="true" class="btn-tier">Get Everything →</a>
+    </div>
+
+  </div>
+  <div style="text-align:center;margin-top:32px">
+    <span style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:0.08em">
+      Instant PDF delivery &nbsp;·&nbsp; All sales final &nbsp;·&nbsp; No subscription ever
+    </span>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="for-section">
+  <div class="section-mono reveal">Is this for you?</div>
+  <h2 class="products-headline reveal" style="margin-bottom:40px">This Was Built <span style="color:var(--cyan)">For You</span> If...</h2>
+  <div class="for-grid reveal">
+    <div class="for-card yes">
+      <div class="for-label">This IS for you</div>
+      <div class="for-item"><span style="color:var(--cyan)">✓</span> You have diagnosed or suspected ADHD</div>
+      <div class="for-item"><span style="color:var(--cyan)">✓</span> You're an adult who has failed every standard fitness program</div>
+      <div class="for-item"><span style="color:var(--cyan)">✓</span> You start strong and fall off every few weeks without knowing why</div>
+      <div class="for-item"><span style="color:var(--cyan)">✓</span> Morning motivation is zero but you want to change that</div>
+      <div class="for-item"><span style="color:var(--cyan)">✓</span> You're a parent buying this for an ADHD teenager</div>
+      <div class="for-item"><span style="color:var(--cyan)">✓</span> You want the science behind why you work the way you do</div>
+    </div>
+    <div class="for-card no">
+      <div class="for-label">This is NOT for you</div>
+      <div class="for-item"><span style="opacity:0.4">✕</span> You want a magic shortcut with zero effort</div>
+      <div class="for-item"><span style="opacity:0.4">✕</span> You're looking for a 7-day crash result</div>
+      <div class="for-item"><span style="opacity:0.4">✕</span> You refuse to try a morning routine under any circumstances</div>
+      <div class="for-item"><span style="opacity:0.4">✕</span> You have a physician-restricted condition that prevents exercise</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-mono reveal">Real results</div>
+  <h2 class="products-headline reveal">ADHD Brains.<br><span style="color:var(--cyan)">Real Results.</span></h2>
+  <div class="testi-grid">
+    <div class="testi reveal">
+      <div class="testi-quote">I've had a personal trainer, tried three different apps, and joined two gyms in two years. None of them lasted more than six weeks. This system is the first thing that actually accounts for how my brain works. I'm on week 11 and I haven't missed more than one session in a row.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">JM</div>
+        <div>
+          <div class="testi-name">Jamie M.</div>
+          <div class="testi-meta">ADHD diagnosed at 34 &nbsp;·&nbsp; Week 11</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi reveal">
+      <div class="testi-quote">The soy chapter in the meal plan alone was worth the price of the whole bundle. I had no idea what was causing my afternoon crashes. Three weeks without soy and the fog is gone. My focus in the afternoons is something I haven't experienced in years.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">RK</div>
+        <div>
+          <div class="testi-name">Ryan K.</div>
+          <div class="testi-meta">Suspected ADHD &nbsp;·&nbsp; Complete System</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi reveal">
+      <div class="testi-quote">I bought this for my 17-year-old son who has ADHD and has been struggling with motivation since he was a kid. He is on day 34 of the morning protocol. He has never voluntarily stuck to anything physical for more than two weeks in his life. I cried reading his week 4 check-in.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">SL</div>
+        <div>
+          <div class="testi-name">Sarah L.</div>
+          <div class="testi-meta">Parent &nbsp;·&nbsp; Bought for son, age 17</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CROSS PROMO -->
+<section class="cross-promo">
+  <div class="promo-inner">
+    <div>
+      <div class="promo-eyebrow">Also from Iron Pack Fitness</div>
+      <h3 class="promo-headline">Also Train With<br><span>A Loaded Pack.</span></h3>
+      <p class="promo-body">Rucking — weighted walking — is one of the most ADHD-compatible training modalities available. Low-impact, outdoors, meditative, and it burns 30-50% more calories than regular walking. The Ultimate Rucking Guide for Fat Loss is the complete field manual for building a lean, functional body with nothing but a pack and a road.</p>
+      <a href="https://omnevellum.gumroad.com/l/dsjuzz" class="btn-promo">Get the Rucking Guide — $27 →</a>
+    </div>
+    <div class="promo-pack">
+      <div class="promo-pack-icon">🎒</div>
+      <div class="promo-pack-label">THE ULTIMATE RUCKING GUIDE FOR FAT LOSS</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="section-mono reveal">Common questions</div>
+  <h2 class="products-headline reveal">Straight Answers.<br><span style="color:var(--cyan)">No Runaround.</span></h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need a formal ADHD diagnosis to use this system? <span class="faq-toggle">+</span></div>
+      <div class="faq-a">No. The system is written for anyone whose brain works the way ADHD brains work — whether diagnosed, suspected, or simply someone who has always struggled with the consistency and initiation challenges this system addresses. If the problems described on this page resonate with you, the solutions will too.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is this appropriate for teenagers with ADHD? <span class="faq-toggle">+</span></div>
+      <div class="faq-a">Yes. The system is written for adults but the principles — anchor-based motivation, morning protocols, rescue workouts — apply directly to ADHD teenagers. Several buyers have purchased specifically for their children. The content is age-appropriate and the workouts are bodyweight-friendly, requiring no equipment.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need a gym membership? <span class="faq-toggle">+</span></div>
+      <div class="faq-a">No. The rescue workouts are fully bodyweight and home-based. The main guide includes gym programming but also outlines outdoor and minimal-equipment options. The morning anchor protocol requires nothing but the ability to walk out your front door.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Will this conflict with my ADHD medication? <span class="faq-toggle">+</span></div>
+      <div class="faq-a">This is a fitness and nutrition guide, not medical advice. Exercise is widely supported as a complement to ADHD medication — not a replacement. The meal plan section on fasting and supplement timing should be discussed with your prescribing physician if you take stimulant medication, as timing matters. Always consult your doctor before making significant dietary or lifestyle changes.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What's your refund policy? <span class="faq-toggle">+</span></div>
+      <div class="faq-a">All sales are final. These are instantly delivered digital products. Please read the product descriptions carefully before purchasing to confirm the system is right for your situation. If you experience a genuine technical issue receiving your download, contact hello@ironpackfitness.com and we'll resolve it immediately.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I receive the PDFs after purchase? <span class="faq-toggle">+</span></div>
+      <div class="faq-a">Instantly via email from Gumroad. After checkout you'll receive a download email within minutes. The files are standard PDFs that work on any device. Save them to your phone, tablet, laptop, or cloud storage — they're yours forever.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-content">
+    <div class="section-mono" style="justify-content:center;margin-bottom:20px">The road is waiting</div>
+    <div class="final-divider"></div>
+    <h2 class="final-cta-headline">Your Brain.<br>Your Rules.<br><span>Your Results.</span></h2>
+    <p class="final-cta-sub">Every program that failed you was built for someone else's brain. This one was built for yours. The only question left is whether today is the day you start.</p>
+    <a href="#pricing" class="btn-hero" style="font-size:18px;padding:20px 52px">Get the Complete System →</a>
+    <div style="margin-top:20px;font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:0.06em">
+      All sales final &nbsp;·&nbsp; Instant download &nbsp;·&nbsp; No subscription
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">IRON PACK FITNESS</div>
+  <div class="footer-links">
+    <a href="index.html">Rucking Guide</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="mailto:hello@ironpackfitness.com">Contact</a>
+  </div>
+  <div class="footer-copy">© 2025 Iron Pack Fitness. All rights reserved. &nbsp;·&nbsp; ironpackfitness.com &nbsp;·&nbsp; All sales final — digital delivery</div>
+</footer>
+
+<script src="https://gumroad.com/js/gumroad.js"></script>
+<script>
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, {threshold: 0.08});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
